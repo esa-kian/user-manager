@@ -50,7 +50,7 @@ public class UserService {
                     return UserGroupDTO.builder()
                             .id(group.getId())
                             .name(group.getName())
-                            .users(userDTOs) // Add users to the DTO
+                            .users(userDTOs)
                             .build();
                 });
     }
