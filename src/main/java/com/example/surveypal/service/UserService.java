@@ -1,5 +1,6 @@
 package com.example.surveypal.service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -79,11 +80,23 @@ public class UserService {
 
     @Transactional
     public void addUserToGroup(Long userId, Long groupId) {
+
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User with id " + userId + " not found"));
+
         UserGroup group = userGroupRepository.findById(groupId)
                 .orElseThrow(() -> new ResourceNotFoundException("Group with id " + groupId + " not found"));
-        group.getUsers().add(user);
+
+        if (group.getUsers() == null) {
+            group.setUsers(new HashSet<>());
+        }
+
+        if (group.getUsers().contains(user)) {
+            group.getUsers().remove(user);
+        } else {
+            group.getUsers().add(user);
+        }
+
         userGroupRepository.save(group);
     }
 }
