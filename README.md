@@ -35,7 +35,7 @@ This project provides a RESTful API for managing users and user groups, built us
 ### Groups
 
 - `POST /api/groups`: Create new group
-- `PUT /api/groups/{groupId}/users/{userId}`: Add user to group
+- `PUT /api/groups/{groupId}/users/{userId}`: Add/Remove user to group
 
 ## Swagger UI
 
@@ -57,6 +57,13 @@ docker run -p 8000:8080 user-management-rest
 3. **Stop the Container:**
 ```
 docker stop user-management-rest
+```
+
+## Running Tests
+To run unit tests for the application, run:
+
+```bash
+mvn test
 ```
 
 ## License
