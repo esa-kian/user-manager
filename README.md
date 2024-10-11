@@ -59,6 +59,13 @@ docker run -p 8000:8080 user-management-rest
 docker stop user-management-rest
 ```
 
+## Running Tests
+To run unit tests for the application, run:
+
+```bash
+mvn test
+```
+
 ## License
 
 This project is open-source and available under the MIT License.

@@ -11,7 +11,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder // Enables the Builder Pattern
+@Builder
 public class UserGroup {
 
     @Id
