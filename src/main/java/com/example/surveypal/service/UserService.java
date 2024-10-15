@@ -79,7 +79,31 @@ public class UserService {
     }
 
     @Transactional
-    public void addUserToGroup(Long userId, Long groupId) {
+    public UserGroupDTO addUserToGroup(Long userId, Long groupId) {
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User with id " + userId + " not found"));
+
+        UserGroup group = userGroupRepository.findById(groupId)
+                .orElseThrow(() -> new ResourceNotFoundException("Group with id " + groupId + " not found"));
+
+        if (group.getUsers() == null) {
+            group.setUsers(new HashSet<>());
+        }
+
+        group.getUsers().add(user);
+
+        UserGroup savedGroup = userGroupRepository.save(group);
+
+
+        return UserGroupDTO.builder()
+                .id(savedGroup.getId())
+                .name(savedGroup.getName())
+                .build();
+    }
+
+    @Transactional
+    public UserGroupDTO removeUserFromGroup(Long userId, Long groupId) {
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User with id " + userId + " not found"));
@@ -93,10 +117,13 @@ public class UserService {
 
         if (group.getUsers().contains(user)) {
             group.getUsers().remove(user);
-        } else {
-            group.getUsers().add(user);
         }
 
-        userGroupRepository.save(group);
+        UserGroup savedGroup = userGroupRepository.save(group);
+
+        return UserGroupDTO.builder()
+                .id(savedGroup.getId())
+                .name(savedGroup.getName())
+                .build();
     }
 }
