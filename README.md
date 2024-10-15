@@ -35,7 +35,8 @@ This project provides a RESTful API for managing users and user groups, built us
 ### Groups
 
 - `POST /api/groups`: Create new group
-- `PUT /api/groups/{groupId}/users/{userId}`: Add/Remove user to group
+- `POST /api/groups/{groupId}/users/{userId}`: Add user to group
+- `DELETE /api/groups/{groupId}/users/{userId}`: Remove user from group
 
 ## Swagger UI
 
