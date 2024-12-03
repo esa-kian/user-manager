@@ -11,8 +11,8 @@ This project provides a RESTful API for managing users and user groups, built us
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/esa-kian/surveypal
-   cd surveypal
+   git clone https://github.com/esa-kian/user-manager
+   cd user-manager
 
 2. Ensure you have JDK 17+ and Maven installed.
 
